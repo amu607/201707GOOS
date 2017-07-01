@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FluentAutomation;
+using GOOS_SampleTests.DataModel;
 using TechTalk.SpecFlow;
 
 namespace GOOS_SampleTests.Common
@@ -17,6 +18,40 @@ namespace GOOS_SampleTests.Common
         public static void StartBrowker()
         {
             SeleniumWebDriver.Bootstrap(SeleniumWebDriver.Browser.Chrome);
+        }
+
+        [BeforeScenario()]
+        public void BeforeScenarioCleanTable()
+        {
+            CleanTableByTags();
+        }
+
+        [AfterFeature()]
+        public static void AfterFeatureCleanTable()
+        {
+            CleanTableByTags();
+        }
+
+        private static void CleanTableByTags()
+        {
+            var tags = ScenarioContext.Current.ScenarioInfo.Tags
+                .Where(x => x.StartsWith("Clean"))
+                .Select(x => x.Replace("Clean", ""));
+
+            if (!tags.Any())
+            {
+                return;
+            }
+
+            using (var dbcontext = new DataModelForTest())
+            {
+                foreach (var tag in tags)
+                {
+                    dbcontext.Database.ExecuteSqlCommand($"TRUNCATE TABLE [{tag}]");
+                }
+
+                dbcontext.SaveChangesAsync();
+            }
         }
     }
 }

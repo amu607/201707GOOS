@@ -14,7 +14,13 @@ namespace GOOS_SampleTests.steps
     [Scope(Feature = "BudgetController")]
     public class BudgetControllerSteps
     {
-
+        /// <summary>
+        /// 
+        /// 
+        /// </summary>
+        /// <remarks>
+        /// 也可以在宣告的時侯直接new，因為每次跑Scenario都會觸發new
+        /// </remarks>
         private BudgetController _budgetController;
 
         [BeforeScenario()]
@@ -26,7 +32,6 @@ namespace GOOS_SampleTests.steps
         [When(@"add a budget")]
         public void WhenAddABudget(Table table)
         {
-
             var model = table.CreateInstance<BudgetAddViewModel>();
             var result = this._budgetController.Add(model);
 

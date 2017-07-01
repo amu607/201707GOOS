@@ -1,9 +1,6 @@
 ﻿Feature: BudgetController
-	In order to avoid silly mistakes
-	As a math idiot
-	I want to be told the sum of two numbers
 
-
+@CleanBudgets
 Scenario: Add a budget record
         When add a budget
         | Amount | Month   |
