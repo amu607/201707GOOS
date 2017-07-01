@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using GOOS_Sample.Models;
 using GOOS_Sample.Models.ViewModels;
+using GOOS_Sample.Repository;
 
 namespace GOOS_Sample.Services
 {
@@ -14,18 +15,27 @@ namespace GOOS_Sample.Services
 
     public class BudgetService : IBudgetService
     {
+        private IRepository<Budgets> _budgeRepository;
+ 
+        public BudgetService(IRepository<Budgets> budgetRepository)
+        {
+            _budgeRepository = budgetRepository;
+        }
+
         public void Create(BudgetAddViewModel model)
         {
-            using (var dbcontext = new Entities())
+            var budget = new Budgets()
             {
-                var budget = new Budgets()
-                {
-                    Amount = model.Amount,
-                    YearMonth = model.Month
-                };
-                dbcontext.Budgets.Add(budget);
-                dbcontext.SaveChanges();
-            }
+                Amount = model.Amount,
+                YearMonth = model.Month
+            };
+            _budgeRepository.Save(budget);
+            //using (var dbcontext = new Entities())
+            //{
+            //  
+            //    dbcontext.Budgets.Add(budget);
+            //    dbcontext.SaveChanges();
+            //}
         }
     }
 }
