@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using GOOS_Sample.Models;
 using GOOS_Sample.Models.ViewModels;
 
 namespace GOOS_Sample.Controllers
@@ -14,6 +15,17 @@ namespace GOOS_Sample.Controllers
         [HttpPost]
         public ActionResult Add(BudgetAddViewModel model)
         {
+            using (var dbcontext = new Entities())
+            {
+               var budget = new Budgets()
+               {
+                   Amount = model.Amount,
+                   YearMonth = model.Month
+               };
+                dbcontext.Budgets.Add(budget);
+                dbcontext.SaveChanges();
+            }
+
             ViewBag.Message = "added successfully";
             return View(model);
         }

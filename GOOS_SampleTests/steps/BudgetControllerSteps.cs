@@ -11,6 +11,7 @@ using TechTalk.SpecFlow.Assist;
 namespace GOOS_SampleTests.steps
 {
     [Binding]
+    [Scope(Feature = "BudgetController")]
     public class BudgetControllerSteps
     {
 
