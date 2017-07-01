@@ -12,6 +12,7 @@ namespace GOOS_SampleTests.Common
     {
         // For additional details on SpecFlow hooks see http://go.specflow.org/doc-hooks
 
+        [BeforeFeature()]
         [Scope (Tag = "web")]
         public static void StartBrowker()
         {
