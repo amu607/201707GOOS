@@ -22,8 +22,12 @@ namespace GOOS_Sample.Controllers
         [HttpPost]
         public ActionResult Add(BudgetAddViewModel model)
         {
+            _budgetService.Created += (sender, e) => { ViewBag.Message = "added successfully"; };
+            _budgetService.Updated += (sender, e) => { ViewBag.Message = "updated successfully"; };
+
             _budgetService.Create(model);
-            ViewBag.Message = "added successfully";
+            //ViewBag.Message = "added successfully";
+
             return View(model);
         }
     }
