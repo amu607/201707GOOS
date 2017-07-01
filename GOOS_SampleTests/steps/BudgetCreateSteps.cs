@@ -12,10 +12,12 @@ namespace GOOS_SampleTests.steps
     public class BudgetCreateSteps : FluentTest
     {
         private BudgetCreatePage _budgetCreatePage;
+        private readonly InsertTable _insertTable;
 
         public BudgetCreateSteps()
         {
             this._budgetCreatePage = new BudgetCreatePage(this);
+            _insertTable = new InsertTable();
         }
 
         [Given(@"go to adding budget page")]
@@ -38,18 +40,6 @@ namespace GOOS_SampleTests.steps
         public void ThenItShouldDisplay(string message)
         {
             this._budgetCreatePage.ShouldDisplay(message);
-        }
-
-
-        [Given(@"Budget table existed budgets")]
-        public void GivenBudgetTableExistedBudgets(Table table)
-        {
-            var budgets = table.CreateSet<Budgets>();
-            using (var dbcontext = new DataModelForTest())
-            {
-                dbcontext.Budgets.AddRange(budgets);
-                dbcontext.SaveChanges();
-            }
         }
     }
 }

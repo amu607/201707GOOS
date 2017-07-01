@@ -70,5 +70,19 @@ namespace GOOS_SampleTests.steps
                 table.CompareToInstance(budget);
             }
         }
+
+
+        [Then(@"ViewBag should have a message for updating successfully")]
+        public void ThenViewBagShouldHaveAMessageForUpdatingSuccessfully()
+        {
+            var result = ScenarioContext.Current.Get<ActionResult>() as ViewResult;
+            string message = result.ViewBag.Message;
+            message.Should().Be(GetUpdatingSuccessfullyMessage());
+        }
+
+        private string GetUpdatingSuccessfullyMessage()
+        {
+            return "updated successfully";
+        }
     }
 }
