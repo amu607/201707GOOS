@@ -30,12 +30,6 @@ namespace GOOS_Sample.Services
                 YearMonth = model.Month
             };
             _budgeRepository.Save(budget);
-            //using (var dbcontext = new Entities())
-            //{
-            //  
-            //    dbcontext.Budgets.Add(budget);
-            //    dbcontext.SaveChanges();
-            //}
         }
     }
 }
