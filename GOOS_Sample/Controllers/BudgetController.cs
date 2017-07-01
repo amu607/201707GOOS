@@ -14,11 +14,6 @@ namespace GOOS_Sample.Controllers
             _budgetService = budgetService;
         }
 
-        public BudgetController()
-        {
-
-        }
-
         // GET: Budget
         public ActionResult Add()
         {

@@ -4,7 +4,10 @@ using FluentAssertions;
 using GOOS_Sample.Controllers;
 using GOOS_Sample.Models;
 using GOOS_Sample.Models.ViewModels;
+using GOOS_Sample.Services;
+using GOOS_SampleTests.Common;
 using GOOS_SampleTests.DataModel;
+using Microsoft.Practices.Unity;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 
@@ -26,7 +29,7 @@ namespace GOOS_SampleTests.steps
         [BeforeScenario()]
         public void BeforeScenario()
         {
-            this._budgetController = new BudgetController();
+           _budgetController = Hooks.UnityContainer.Resolve<BudgetController>();
         }
 
         [When(@"add a budget")]

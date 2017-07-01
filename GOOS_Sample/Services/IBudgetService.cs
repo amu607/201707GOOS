@@ -12,7 +12,7 @@ namespace GOOS_Sample.Services
         void Create(BudgetAddViewModel model);
     }
 
-    public class BudgerService : IBudgetService
+    public class BudgetService : IBudgetService
     {
         public void Create(BudgetAddViewModel model)
         {
