@@ -39,9 +39,9 @@ namespace GOOS_SampleTests.steps
         }
         
         [Then(@"it should display ""(.*)""")]
-        public void ThenItShouldDisplay(string p0)
+        public void ThenItShouldDisplay(string message)
         {
-            ScenarioContext.Current.Pending();
+            this._budgetCreatePage.ShouldDisplay(message);
         }
     }
 }
