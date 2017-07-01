@@ -10,32 +10,32 @@ namespace GOOS_SampleTests.pageobjects
 {
     public class BudgetCreatePage : PageObject<BudgetCreatePage>
     {
-        private BudgetCreateSteps budgetCreateSteps;
 
-        public BudgetCreatePage(FluentTest test) :base(test)
+        public BudgetCreatePage(FluentTest test) : base(test)
         {
-            this.budgetCreateSteps = budgetCreateSteps;
+            this.Url = $"{PageContext.Domain}/budget/add";
         }
-
 
         public BudgetCreatePage Amount(int amount)
         {
-            throw new System.NotImplementedException();
+            I.Enter(amount.ToString()).In("#amount");
+            return this;
         }
 
         public BudgetCreatePage Month(string yearMonth)
         {
-            throw new System.NotImplementedException();
+            I.Enter(yearMonth).In("#month");
+            return this;
         }
 
-        public BudgetCreatePage AddBudget()
+        public void AddBudget()
         {
-            throw new System.NotImplementedException();
+            I.Click("input[type=\"submit\"]");
         }
 
-        public BudgetCreatePage ShouldDisplay(string message)
+        public void ShouldDisplay(string message)
         {
-            throw new System.NotImplementedException();
+            I.Assert.Text(message).In("#message");
         }
     }
 }
